@@ -16,7 +16,6 @@ public:
 			longStr = b;
 			shortStr = a;
 		}
-
 	}
 	
 	int checkLength()
