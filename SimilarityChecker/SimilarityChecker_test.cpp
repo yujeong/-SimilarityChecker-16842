@@ -43,6 +43,36 @@ TEST_F(SimilarityCheckerFixture, TC5)
 	EXPECT_EQ(result, 0);
 }
 
+TEST_F(SimilarityCheckerFixture, alphaTC1)
+{
+	SimilarityChecker sc{ "ASD", "DSA" };
+	int result = sc.checkAlpha();
+	EXPECT_EQ(result, 40);
+}
+
+TEST_F(SimilarityCheckerFixture, alphaTC2)
+{
+	SimilarityChecker sc{ "A", "BB" };
+	int result = sc.checkAlpha();
+	EXPECT_EQ(result, 0);
+}
+
+TEST_F(SimilarityCheckerFixture, alphaTC3)
+{
+	SimilarityChecker sc{ "AAABB", "BA" };
+	int result = sc.checkAlpha();
+	int expected = static_cast<double>(2) / 2 * 40;
+	EXPECT_EQ(result, expected);
+}
+
+TEST_F(SimilarityCheckerFixture, alphaTC4)
+{
+	SimilarityChecker sc{ "AA", "AAE" };
+	int result = sc.checkAlpha();
+	int expected = static_cast<double>(1) / 2 * 40;
+	EXPECT_EQ(result, expected);
+}
+
 int main()
 {
 	::testing::InitGoogleMock();
